@@ -8,6 +8,7 @@ Dans un secteur choisi
   Ajouter dans ce fichier les credentatials correspondants à votre serveur SMTP préféré
   
   exemple pour gmail
+  dans le fichier .env
   ```javascript
   SERVICE_MAIL = gmail
   AUTH_MAIL_USER = xxxxxxxxxxx@gmail.com
