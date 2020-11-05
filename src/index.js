@@ -1,5 +1,7 @@
-const {getRents, getPlaceCoords} = require("./rents")
+require('dotenv').config()
 
+const {getRents, getPlaceCoords} = require("./rents")
+const Mailer = require("./mailer/Mailer")
 
 data = {
     idTool: "bb452681-c0f2-11ea-8c39-005056941f86",
@@ -15,10 +17,22 @@ data = {
 
 
 const run = async ()=>{
-    const coordsCity =  await getPlaceCoords("beauvais")
+    const coordsCity =  await getPlaceCoords("paris")
 
      const rents = await getRents({...data, location:coordsCity})
-     console.log(rents)
+     console.log(rents.results)
+
+
+     //const service = process.env.SERVICE_MAIL
+
+    //  const  authCredentials = {
+    //     user: process.env.AUTH_MAIL_USER,
+    //     pass: process.env.AUTH_MAIL_PASSWORD
+    // }
+  
+    //  const mailer = new Mailer({ withSMTP:true, service, authCredentials})
+    //  mailer.sendMail()
+
    
   
 
