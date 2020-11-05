@@ -1,7 +1,7 @@
-const getPlaceCoords = require("./getPlaceCoords")
-const getRents = require("./getRents")
+const getPlaceCoords = require("./getPlaceCoords");
+const getRents = require("./getRents").default;
 
 module.exports = {
-    getPlaceCoords,
-    getRents
-}
+  getPlaceCoords,
+  getRents,
+};
