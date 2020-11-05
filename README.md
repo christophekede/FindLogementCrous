@@ -8,7 +8,8 @@ Dans un secteur choisi
   Ajouter dans ce fichier les credentatials correspondants à votre serveur SMTP préféré
   
   exemple pour gmail
-  
+  ```javascript
   SERVICE_MAIL = gmail
   AUTH_MAIL_USER = xxxxxxxxxxx@gmail.com
-  AUTH_MAIL_PASSWORD = xxxxxxxxxx 
+  AUTH_MAIL_PASSWORD = xxxxxxxxxx
+  ```
