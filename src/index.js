@@ -20,19 +20,28 @@ const run = async ()=>{
     const coordsCity =  await getPlaceCoords("paris")
 
      const rents = await getRents({...data, location:coordsCity})
-     console.log(rents.results)
+     const totalRents = rents.results.total
 
+     //Verifier si des logements ont été trouvés
+     if(totalRents > 0){
+         
+         // Traitement pour la notification par mail
+    //      console.log("hello")
+    //       const service = process.env.SERVICE_MAIL
 
-     //const service = process.env.SERVICE_MAIL
-
-    //  const  authCredentials = {
-    //     user: process.env.AUTH_MAIL_USER,
-    //     pass: process.env.AUTH_MAIL_PASSWORD
-    // }
+    //   const  authCredentials = {
+    //      user: process.env.AUTH_MAIL_USER,
+    //      pass: process.env.AUTH_MAIL_PASSWORD
+    //  }
   
-    //  const mailer = new Mailer({ withSMTP:true, service, authCredentials})
-    //  mailer.sendMail()
+    //   const mailer = new Mailer({ withSMTP:true, service, authCredentials})
+    //   mailer.sendMail()
 
+     }
+     console.log(rents.results.items)
+
+
+    
    
   
 
