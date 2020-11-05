@@ -17,7 +17,7 @@ data = {
 
 
 const run = async ()=>{
-    const coordsCity =  await getPlaceCoords("paris")
+    const coordsCity =  await getPlaceCoords("amiens")
 
      const rents = await getRents({...data, location:coordsCity})
      const totalRents = rents.results.total
@@ -25,17 +25,21 @@ const run = async ()=>{
      //Verifier si des logements ont été trouvés
      if(totalRents > 0){
          
-         // Traitement pour la notification par mail
-    //      console.log("hello")
-    //       const service = process.env.SERVICE_MAIL
+         //Traitement pour la notification par mail
+         console.log("hello")
+          const service = process.env.SERVICE_MAIL
 
-    //   const  authCredentials = {
-    //      user: process.env.AUTH_MAIL_USER,
-    //      pass: process.env.AUTH_MAIL_PASSWORD
-    //  }
+      const  authCredentials = {
+         user: process.env.AUTH_MAIL_USER,
+         pass: process.env.AUTH_MAIL_PASSWORD
+     }
   
-    //   const mailer = new Mailer({ withSMTP:true, service, authCredentials})
-    //   mailer.sendMail()
+      const mailer = new Mailer({ withSMTP:true, service, authCredentials})
+      mailer.sendMail().then(data=>{
+          console.log(data)
+      }).catch(err=>{
+          console.log(err)
+      })
 
      }
      console.log(rents.results.items)

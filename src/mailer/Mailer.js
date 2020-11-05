@@ -10,16 +10,20 @@ class Mailer {
         }
 
 
-        sendMail(){
-            this.transport.sendMail({
-                from: 'christophe.kede.biloa@gmail.com',
-                to: 'chris.kede@yahoo.fr',
-                subject: 'Message',
-                text: 'I hope this message gets delivered!'
-            }, (err, info)=>{
-                console.log(err)
-                //console.log(info.envelope);
-                //console.log(info.messageId);
+        sendMail(from, to, subject, text){
+         
+            return new Promise((resolve, reject)=>{
+                this.transport.sendMail({
+                    from,
+                    to,
+                    subject,
+                    text,
+                    }, (err, info)=>{
+                    if(err)
+                        reject(err)
+                    else
+                        resolve(info)
+                })
             })
         }
 
