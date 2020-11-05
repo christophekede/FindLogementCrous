@@ -5,7 +5,7 @@ Dans un secteur choisi
 # CONFIGURATION
 
   Créer un fichier .env à la racine du projet 
-  Ajouter dans ce fichier les credentatials correspondants à votre serveur SMTP préféré
+  Ajouter dans ce fichier les credentials correspondants à votre serveur SMTP préféré
   
   exemple pour gmail
   dans le fichier .env
