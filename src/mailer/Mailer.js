@@ -1,7 +1,7 @@
 const nodemailer = require("nodemailer");
 
 class Mailer {
-  constructor({ withSMTP, service, host, port, authCredentials }) {
+  constructor({ withSMTP, service, authCredentials }) {
     this.transport = withSMTP
       ? nodemailer.createTransport({ service, auth: authCredentials })
       : nodemailer.createTransport("direct", { debug: true });
