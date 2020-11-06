@@ -2,6 +2,7 @@ require("dotenv").config();
 
 const { getRents, getPlaceCoords } = require("./rents");
 const Mailer = require("./mailer/Mailer");
+const autoBooking = require("./booking/autoBooking");
 
 const data = {
   idTool: "bb452681-c0f2-11ea-8c39-005056941f86",
@@ -15,32 +16,44 @@ const data = {
 };
 
 const run = async () => {
-  const coordsCity = await getPlaceCoords("amiens");
+  const coordsCity = await getPlaceCoords("paris");
 
   const rents = await getRents({ ...data, location: coordsCity });
   const totalRents = rents.results.total;
 
   // Verifier si des logements ont été trouvés
   if (totalRents > 0) {
-    // Traitement pour la notification par mail
+    // reserver automatiquement le logement
 
-    const service = process.env.SERVICE_MAIL;
+    const booked = await autoBooking(
+      rents.results.items[0].id,
+      "fichedepaie",
+      "test@test.com",
+      "mot_de_passe_test"
+    );
 
-    const authCredentials = {
-      user: process.env.AUTH_MAIL_USER,
-      pass: process.env.AUTH_MAIL_PASSWORD,
-    };
+    if (booked === true) {
+      const service = process.env.SERVICE_MAIL;
 
-    const mailer = new Mailer({ withSMTP: true, service, authCredentials });
-    mailer
-      .sendMail()
-      .then((data) => {
-        console.log(data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+      // Traitement pour la notification par mail
+      const authCredentials = {
+        user: process.env.AUTH_MAIL_USER,
+        pass: process.env.AUTH_MAIL_PASSWORD,
+      };
+
+      const mailer = new Mailer({ withSMTP: true, service, authCredentials });
+      mailer
+        .sendMail()
+        .then((data) => {
+          console.log(data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+
+      console.log(err);
+    }
+    console.log(rents.results.items[0].id);
   }
-  console.log(rents.results.items);
 };
 run();

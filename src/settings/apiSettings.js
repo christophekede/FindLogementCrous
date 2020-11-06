@@ -1,5 +1,5 @@
 // Headers de la requete POST https://trouverunlogement.lescrous.fr/api/fr/search/bb452681-c0f2-11ea-8c39-005056941f86
-// Pour récupérer la liste des logements disponibled
+// Pour récupérer la liste des logements disponibles
 
 const commonHeaders = {
   "User-Agent":
